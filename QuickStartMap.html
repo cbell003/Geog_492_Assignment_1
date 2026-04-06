@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <title>University of Oregon Mapping</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <!--    Include the reference to the Mapbox JavaScript here in the <head> of the page  (Part I.1)  -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.20.0/mapbox-gl.js"></script>
+
+
+          
+    <!--    Include the reference to the Mapbox CSS here in between <head> tags    (Part I.2) -->
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.20.0/mapbox-gl.css" rel="stylesheet">
+
+    <style>
+        /* Insert the additional CSS code here between the <style> tags  (Part I.4)   */
+      body { margin:0; padding:0; }
+      #map { position:absolute; top:0; bottom:0; width: 100%; }  
+      #banner { z-index: 9999;
+            background-color:rgb(223, 238, 12);
+            opacity: 80%;
+           text-align:center
+             }
+
+    </style>
+    
+  </head>
+
+  <body>
+    <!--  Insert the map div here in the <body> of the page  (Part I)  -->
+    <div id="map"></div>
+    <!--  Insert the title div here (part VI) -->
+      <div id="banner">
+                <h1> My Map of Portland that shows Portland Gears location</h1>
+                <h2>By: Collin Bell</h2>
+                
+      </div>
+      
+    <script>
+        // Insert the JavaScript within the <script> tags, within the body   
+        // Start with the Mapbox access token here (Part 2.1)
+          mapboxgl.accessToken = "pk.eyJ1IjoiY2JlbGwwMyIsImEiOiJjbW5tNTh6NW0xN2MzMnBxN2hmOXl5OHd6In0.0-7Xjh22UHouSnJXAkZcHg";
+   
+        // Then initialize the map here (Part 2.2)
+          var map = new mapboxgl.Map({
+            container: 'map', 
+            style: 'mapbox://styles/mapbox/satellite-v9',
+            center: [-122.6788, 45.5212],
+            zoom: 11
+          })
+        // Add the zoom contols here (part V)
+          map.addControl(new mapboxgl.NavigationControl({
+            showCompass: false
+          }), 'bottom-left');
+        // Add popups for markers here. Yes, before the markers!  (part IV)
+        var popup = new mapboxgl.Popup({ offset: 25})
+          .setHTML('Hello World. Welcome to portland!');
+      
+        // Add any other variables such as markers here (part III)
+          var marker = new mapboxgl.Marker({color:'purple'})
+            .setLngLat([-122.680994, 45.524333])
+            .setPopup(popup)
+            .addTo(map);
+          var popup_layer = new mapboxgl.Popup({closeOnClick: true, anchor:'bottom-left'}) 
+            .setLngLat([-122.680994, 45.524333]) 
+            .setHTML('<a href="https://www.bing.com/aclk?ld=e8ua7v2_NAnTShxGDa4KqqTzVUCUwJCRm9byYeYajD63zZs0RSU0ZjYSpUhSXyGYdDsVC7cN-8ZeJnLC5Iz1s4V_ABgu0Hsm2pnnX56wZSc4b4qGPuKrlW4IXMpydnwCBOb4u4wEgjCdZCpq7oQIG3-8v7Adstb2oY8rGAz-teOHetqfMClXk0ZO0tYI1GXIs_8VVKCl66TWKRLNyvCzc4QHSbJgw&u=aHR0cHMlM2ElMmYlMmZwb3J0bGFuZGdlYXIuY29tJTJmY29sbGVjdGlvbnMlMmZpdGVtcy10aGF0LWNhbi1iZS1vbi1kaXNjb3VudCUzZnBhZ2UlM2Q1JTI2dXRtX3NvdXJjZSUzZGJpbmclMjZ1dG1fbWVkaXVtJTNkY3BjJTI2dXRtX2NhbXBhaWduJTNkUE1heF9HZW5lcmFsJTI2dXRtX2FkZ3JvdXAlM2RCYWdzJTI2dXRtX3Rlcm0lM2Rwb3J0bGFuZGdlYXIuY29tJTI2bXNjbGtpZCUzZDk3MzgyMWZjMTRiNzE2YTcyNTNiNDgyZWVkZjE2ZGI5JTI2dXRtX2NvbnRlbnQlM2RCYWdz&rlid=973821fc14b716a7253b482eedf16db9"> portland gear </a>') 
+            .addTo(map); 
+          var marker2 = new mapboxgl.Marker({color:'orange'})
+            .setLngLat([-122.6788, 45.5212])
+            .addTo(map);
+        // Add optional advanced "On load" function here
+        
+    </script>
+
+  </body>
+
+</html>
